@@ -14,6 +14,7 @@
 		C2747C23272EB9E00047E743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2747C22272EB9E00047E743 /* Assets.xcassets */; };
 		C2747C26272EB9E00047E743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2747C24272EB9E00047E743 /* LaunchScreen.storyboard */; };
 		C2747C2E272EC0A00047E743 /* Capital.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2747C2D272EC0A00047E743 /* Capital.swift */; };
+		C2747C30272EDF260047E743 /* Wiki.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2747C2F272EDF260047E743 /* Wiki.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		C2747C25272EB9E00047E743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2747C27272EB9E00047E743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2747C2D272EC0A00047E743 /* Capital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capital.swift; sourceTree = "<group>"; };
+		C2747C2F272EDF260047E743 /* Wiki.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wiki.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				C2747C19272EB9DF0047E743 /* AppDelegate.swift */,
 				C2747C1B272EB9DF0047E743 /* SceneDelegate.swift */,
 				C2747C1D272EB9DF0047E743 /* ViewController.swift */,
+				C2747C2F272EDF260047E743 /* Wiki.swift */,
 				C2747C2D272EC0A00047E743 /* Capital.swift */,
 				C2747C1F272EB9DF0047E743 /* Main.storyboard */,
 				C2747C22272EB9E00047E743 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2747C1E272EB9DF0047E743 /* ViewController.swift in Sources */,
+				C2747C30272EDF260047E743 /* Wiki.swift in Sources */,
 				C2747C1A272EB9DF0047E743 /* AppDelegate.swift in Sources */,
 				C2747C2E272EC0A00047E743 /* Capital.swift in Sources */,
 				C2747C1C272EB9DF0047E743 /* SceneDelegate.swift in Sources */,

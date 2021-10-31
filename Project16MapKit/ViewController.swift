@@ -16,11 +16,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Map Type", style: .plain, target: self, action: #selector(changeMapView))
         
-        let london = Capital(title: "London", coordinate:CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), info: "Home to the 2012 Summer Olympics")
-        let oslo = Capital(title: "Oslo", coordinate: CLLocationCoordinate2D(latitude: 59.95, longitude: 10.75), info: "It was founded a thousand years ago")
-        let paris = Capital(title: "Paris", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508), info: "Often called the city of Light")
-        let rome = Capital(title: "Rome", coordinate: CLLocationCoordinate2D(latitude: 41.9, longitude: 12.5), info: "Has a whole country inside it")
-        let washington = Capital(title: "Washington DC", coordinate: CLLocationCoordinate2D(latitude: 38.895111, longitude: -77.036667), info: "Named after George himself")
+        let london = Capital(title: "London", coordinate:CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), info: "Home to the 2012 Summer Olympics", html: "https://en.wikipedia.org/wiki/London")
+        let oslo = Capital(title: "Oslo", coordinate: CLLocationCoordinate2D(latitude: 59.95, longitude: 10.75), info: "It was founded a thousand years ago", html: "https://en.wikipedia.org/wiki/Oslo")
+        let paris = Capital(title: "Paris", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508), info: "Often called the city of Light", html: "https://en.wikipedia.org/wiki/Paris")
+        let rome = Capital(title: "Rome", coordinate: CLLocationCoordinate2D(latitude: 41.9, longitude: 12.5), info: "Has a whole country inside it", html: "https://en.wikipedia.org/wiki/Rome")
+        let washington = Capital(title: "Washington DC", coordinate: CLLocationCoordinate2D(latitude: 38.895111, longitude: -77.036667), info: "Named after George himself", html: "https://en.wikipedia.org/wiki/Washington,_D.C.")
         
         mapView.addAnnotations([london, oslo, paris, rome, washington ])
     }
@@ -30,7 +30,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         let identifier = "Capital"
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
         
         
         if annotationView == nil {
@@ -43,19 +43,25 @@ class ViewController: UIViewController, MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         
-        annotationView?.pinTintColor = UIColor.blue
+        annotationView?.pinTintColor = .blue
         return annotationView
     }
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let capital = view.annotation as? Capital else { return }
         
-        let placeName = capital.title
-        let placeInfo = capital.info
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "wiki") as? Wiki {
+            vc.html = capital.html
+            navigationController?.pushViewController(vc, animated: true)
+        }
         
-        let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Ok", style: .default))
-        present(ac, animated: true)
+        
+//        let placeName = capital.title
+//        let placeInfo = capital.info
+        
+//        let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .alert)
+//        ac.addAction(UIAlertAction(title: "Ok", style: .default))
+//        present(ac, animated: true)
     }
     
     @objc func changeMapView() {
@@ -71,7 +77,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     func setMapType(action: UIAlertAction) {
         guard let setTitlte = action.title else { return }
-        
         
         switch setTitlte {
         case "Standart":
@@ -89,7 +94,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         default:
             mapView.mapType = .standard
         }
-        
     }
+    
 }
 
