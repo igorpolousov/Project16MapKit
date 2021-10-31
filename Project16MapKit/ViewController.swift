@@ -13,7 +13,9 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Map Type", style: .plain, target: self, action: #selector(changeMapView))
+        
         let london = Capital(title: "London", coordinate:CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), info: "Home to the 2012 Summer Olympics")
         let oslo = Capital(title: "Oslo", coordinate: CLLocationCoordinate2D(latitude: 59.95, longitude: 10.75), info: "It was founded a thousand years ago")
         let paris = Capital(title: "Paris", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508), info: "Often called the city of Light")
@@ -28,7 +30,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         let identifier = "Capital"
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+        
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
@@ -39,6 +42,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
         } else {
             annotationView?.annotation = annotation
         }
+        
+        annotationView?.pinTintColor = UIColor.blue
         return annotationView
     }
 
@@ -53,5 +58,38 @@ class ViewController: UIViewController, MKMapViewDelegate {
         present(ac, animated: true)
     }
     
+    @objc func changeMapView() {
+        let ac = UIAlertController(title: "Choose map view", message: "Here you can choose map view", preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Satellite", style: .default, handler: setMapType))
+        ac.addAction(UIAlertAction(title: "Hybrid", style: .default, handler: setMapType))
+        ac.addAction(UIAlertAction(title: "Hybrid FlyOver", style: .default, handler: setMapType))
+        ac.addAction(UIAlertAction(title: "Muted Standart", style: .default, handler: setMapType))
+        ac.addAction(UIAlertAction(title: "Satellite FlyOver", style: .default, handler: setMapType))
+        ac.addAction(UIAlertAction(title: "Standart", style: .default, handler: setMapType))
+        present(ac, animated: true)
+    }
+    
+    func setMapType(action: UIAlertAction) {
+        guard let setTitlte = action.title else { return }
+        
+        
+        switch setTitlte {
+        case "Standart":
+            mapView.mapType = .standard
+        case "Hybrid":
+            mapView.mapType = .hybrid
+        case "Hybrid FlyOver":
+            mapView.mapType = .hybridFlyover
+        case "Muted Standart":
+            mapView.mapType = .mutedStandard
+        case "Satellite":
+            mapView.mapType = .satellite
+        case "Satellite FlyOver":
+            mapView.mapType = .satelliteFlyover
+        default:
+            mapView.mapType = .standard
+        }
+        
+    }
 }
 
