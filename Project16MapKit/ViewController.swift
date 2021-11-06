@@ -1,7 +1,7 @@
 //
 //  ViewController.swift
 //  Project16MapKit
-//
+//  Day 60-61
 //  Created by Igor Polousov on 31.10.2021.
 //
 import MapKit
